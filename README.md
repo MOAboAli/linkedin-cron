@@ -32,6 +32,16 @@ Make sure that the script.sh file has the proper permissions to be executed. You
 chmod +x script.sh
 ```
 
+for windows
+```
+wsl chmod +x script.sh
+```
+then activate the script
+```
+~\linkedin-cron\venv\Scripts\activate
+```
+
+
 ### 3. Install Python Dependencies
 
 Before running the project, make sure you have all necessary Python dependencies installed. Run the following command to install `selenium`, `python-dotenv`, and any other required libraries:
@@ -40,10 +50,19 @@ Before running the project, make sure you have all necessary Python dependencies
 bash script.sh
 ```
 
+For Windows
+```
+./script.sh
+```
+
 ### 4.Running the Project
 
 ```bash
 python3 cron.py
 ```
 
+for windows
+```
+~\linkedin-cron\venv\Scripts\python.exe cron.py 
+```
 

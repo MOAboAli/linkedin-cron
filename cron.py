@@ -65,7 +65,7 @@ def search_linkedin_connections(driver, base_search_url, connections_count=3, df
     """Search for LinkedIn connections based on search URL and extract connection details."""
     data = []
     new_entries_count = 0
-    page_num = 1
+    page_num = 9
     got_it_click_count = 0  # Counter for "Got it" button clicks
 
 
@@ -74,6 +74,7 @@ def search_linkedin_connections(driver, base_search_url, connections_count=3, df
     try:
         while new_entries_count < connections_count:
             search_url = base_search_url.format(page_num=page_num)
+            print('LinkedIn URL: '+search_url)
             driver.get(search_url)
             time.sleep(5)  # Wait for the page to load
 
@@ -81,6 +82,7 @@ def search_linkedin_connections(driver, base_search_url, connections_count=3, df
             for li in li_elements:
                 try:
                     connect_button = li.find_element(By.CSS_SELECTOR, 'button[aria-label^="Invite"]')
+                    print("Found One...............................")
                     if connect_button:
                         name_link = li.find_element(By.CSS_SELECTOR, 'span.entity-result__title-text a')
                         name = name_link.text.strip()
@@ -134,7 +136,8 @@ def search_linkedin_connections(driver, base_search_url, connections_count=3, df
 
                         if new_entries_count >= connections_count:
                             break
-                except Exception:
+                except Exception as e:
+                    print("Exception occurred: {e.Message}")
                     continue
 
             # Move to the next page if needed
@@ -178,7 +181,7 @@ def main():
         df_existing = load_or_create_csv(file_name)
         
         # Define the search URL
-        base_search_url = "https://www.linkedin.com/search/results/people/?geoUrn=%5B%22103644278%22%5D&keywords=recruiter&network=%5B%22O%22%5D&origin=FACETED_SEARCH&page={page_num}&sid=-h5"
+        base_search_url = "https://www.linkedin.com/search/results/people/?geoUrn=%5B%22103644278%22%5D&keywords=recruiter&network=%5B%22F%22%2C%22S%22%2C%22O%22%5D&origin=FACETED_SEARCH&page={page_num}&sid=1ZH"
 
         # Ask for Desired new connection number
         while True:
