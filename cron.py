@@ -44,7 +44,7 @@ def login_to_linkedin(driver):
 
 
 
-
+#D:\education\MIU\JobSearch\SalahRepo\My\linkedin-cron\venv\Scripts\python.exe cron.py
 
 def search_linkedin_connections(driver, base_search_url, connections_count=3):
     """Search for LinkedIn connections based on search URL and extract connection details."""
